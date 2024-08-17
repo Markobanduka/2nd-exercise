@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { getAllProducts } from "./services/ProductService";
 
 interface ProductData {
   id: number;
@@ -17,10 +18,7 @@ const FetchProducts = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}products?limit=9`
-      );
-      const data = await res.json();
+      const data = await getAllProducts();
       setProducts(data.products);
     };
 

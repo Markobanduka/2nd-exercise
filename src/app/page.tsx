@@ -1,11 +1,15 @@
+import Search from "@/components/Search";
 import FetchProducts from "@/FetchProducts";
 
-const Home = async () => {
+const Home = () => {
   return (
     <div className="min-h-screen">
-      <h1 className="text-3xl font-bold mb-6 text-red-500">
-        Our Trending Products
-      </h1>
+      <div className="flex">
+        <h1 className="text-3xl font-bold mb-6 text-red-500 flex-1">
+          Our Trending Products
+        </h1>
+        <Search />
+      </div>
       <FetchProducts />
     </div>
   );

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import { getProductById } from "./services/ProductService";
 
 interface ParamsProps {
   params: {
@@ -17,10 +18,12 @@ interface DataProps {
 }
 
 const SingleProduct: React.FC<ParamsProps> = async ({ params }) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}products/${params.id}`
-  );
-  const data: DataProps = await res.json();
+  const data: DataProps = await getProductById(Number(params.id));
+  console.log(data);
+
+  if (!data) {
+    return <p>Product not found</p>;
+  }
 
   return (
     <div>
